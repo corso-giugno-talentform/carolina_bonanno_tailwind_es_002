@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div
+        class="bg-slate-100 min-w-full h-[5rem] px-8 py-4 flex justify-between items-center shadow-md"
+      >
+        <img src="assets/logos/logo.svg" />
+        <nav class="text-gray-500 flex gap-4">
+          <a href="#" class="hover:text-indigo-500">Link 1</a>
+          <a href="#" class="hover:text-indigo-500">Link 2</a>
+          <a href="#" class="hover:text-indigo-500">Link 3</a>
+        </nav>
+      </div>
+    </header>
+    <section class="mx-20 my-10" x-data="{ open: false }">
+      <h2 class="">Playground di esempio</h2>
+      <div class="border-2 p-5 rounded">
+        <button
+          @click="open = ! open"
+          type="button"
+          class="text-white border hover:bg-indigo-500 hover:cursor-pointer bg-indigo-300 p-3 rounded"
+        >
+          Mostra/Nascondi
+        </button>
+        <p>Testo visibile</p>
+
+        <p x-show="open">Testo nascosto</p>
+        <!-- se open è vero  -->
+      </div>
+    </section>
+    <hr />
+    <section class="my-10 flex justify-center">
+      <div x-data="{ count: 0 }" class="flex gap-10 items-center">
+        <button
+          x-on:click="count++"
+          type="button"
+          class="text-white border hover:bg-indigo-500 hover:cursor-pointer bg-indigo-300 p-4 rounded-full"
+        >
+          Increment
+        </button>
+        <p x-text="count" class="font-bold text-gray-500"></p>
+      </div>
+    </section>
+    <hr />
+    <section class="my-10 flex justify-center">
+      <div
+        x-data="{
+        search: '',
+ 
+        items: [
+        'marketing',
+        'clean',
+        'exchange',
+        'avant-garde',
+        'lamp',
+        'freight',
+        'theft',
+        'carry',
+        'researcher',
+        'pepper',
+        'lock',
+        'extraterrestrial',
+        'thirsty',
+        'proper',
+        'ancestor',
+        'ensure',
+        'cave',
+        'crouch',
+        'pardon',
+        'mole'],
+ 
+        
+
+        get filteredItems() {
+            return this.items.filter(
+                i => i.startsWith(this.search)
+            )
+        }, addItems() {
+            if (!this.items.includes(this.search)) {
+              this.items.push(this.search);
+              this.search = '';
+            } else {
+              console.log('Già presente');
+              this.search = '';
+            }
+        }
+
+    }"
+      >
+        <div class="flex gap-4">
+          <input
+            class="border border-indigo-400 rounded-full px-4 py-2"
+            x-model="search"
+            placeholder="Search here"
+          />
+          <button
+            type="button"
+            @click="addItems()"
+            class="text-white border hover:bg-indigo-500 hover:cursor-pointer bg-indigo-300 py-2 px-4 rounded-full"
+          >
+            Add word
+          </button>
+        </div>
+
+        <ul class="flex flex-col m-4 list-disc text-gray-600">
+          <template x-for="item in filteredItems" :key="item">
+            <li x-text="item"></li>
+          </template>
+        </ul>
+      </div>
+    </section>
+  </body>
+  <script></script>
+</html>
